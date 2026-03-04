@@ -71,6 +71,8 @@ export interface ChecklistItem {
     checklistId: string;
     title: string;
     isDone: boolean;
+    description?: string;
+    assignedTo?: string;
 }
 
 export interface Attachment {
