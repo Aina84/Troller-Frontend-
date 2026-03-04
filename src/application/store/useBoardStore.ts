@@ -34,12 +34,12 @@ export const useBoardStore = create<BoardState>((set) => ({
     fetchBoardData: async (tableId: string) => {
         set({ isLoading: true, error: null });
         try {
-            const [table, lists] = await Promise.all([
+            const [table, lists, cards] = await Promise.all([
                 TableRepository.getById(tableId),
                 ListRepository.getAllByTable(tableId),
                 CardRepository.getAllByTable(tableId)
             ]);
-            set({ currentTable: table, lists, isLoading: false });
+            set({ currentTable: table, lists, cards, isLoading: false });
         } catch (error: any) {
             set({ error: error.message || 'Failed to fetch board data', isLoading: false });
         }
